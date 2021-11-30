@@ -13,6 +13,9 @@ inputs:
   channel:
     description: "Slack channel where job status message will be posted"
     required: true
+  message:
+    description: "Slack message text that will be sent as a part of the message"
+    required: false
 
 runs:
   using: "docker"
@@ -21,6 +24,7 @@ runs:
     - ${{ inputs.job-status }}
     - ${{ inputs.slack-bot-token }}
     - ${{ inputs.channel }}
+    - ${{ inputs.message }}
 
 branding:
   icon: "activity"
