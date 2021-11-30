@@ -6,6 +6,7 @@ set -eu
 JOB_STATUS=$(echo "$1" | tr '[:upper:]' '[:lower:]')
 SLACK_BOT_TOKEN=$2
 CHANNEL=$3
+MESSAGE=$4
 
 REPO_NAME=${GITHUB_REPOSITORY##*/}
 REPOSITORY=$GITHUB_REPOSITORY
@@ -16,7 +17,7 @@ RUN_ID=$GITHUB_RUN_ID
 slackMsg() {
     title=$1
     color=$2
-    msg="{\"channel\":\"$CHANNEL\", \"attachments\": [ { \"title\":\"$title [ $REPO_NAME ] : [ $WORKFLOW ] : [ $BRANCH ]\", \"text\": \"https://github.com/$REPOSITORY/actions/runs/$RUN_ID\", \"color\": \"$color\" } ]}"
+    msg="{\"channel\":\"$CHANNEL\", \"attachments\": [ { \"title\":\"$title [ $REPO_NAME ] : [ $WORKFLOW ] : [ $BRANCH ]\", \"text\": \"$4", \"color\": \"$color\" } ]}"
 }
 
 if [ "$JOB_STATUS" = 'success' ]; then
